@@ -1,3 +1,5 @@
+
+'use strict';
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -10,7 +12,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 
-mongoose.connect('process.env.MONGODB_URI', {
+const auth = require('./routes/auth');
+const apiRouter = require('./routes/api');
+
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
@@ -22,12 +27,10 @@ mongoose.connect('process.env.MONGODB_URI', {
     console.error(error);
   });
 const app = express();
-const auth = require('./routes/auth');
-const apiRouter = require('./routes/api');
 
 app.use(cors({
   credentials: true,
-  origin: ['process.env.PUBLIC_DOMAIN']
+  origin: [process.env.PUBLIC_DOMAIN]
 }));
 
 app.use(
