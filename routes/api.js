@@ -7,6 +7,7 @@ router.get('/alumnos', async (req, res, next) => {
   // Obtenemos la lista de la bd
   try {
     const listOfAlumnos = await Alumno.find();
+    console.log(router.stack);
     res.status(200).json({ listOfAlumnos });
   } catch (error) {
     next(error);

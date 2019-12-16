@@ -19,10 +19,15 @@ const alumnoSchema = new Schema({
   type: {
     type: String,
     required: true,
-    enum: ['man', 'woman']
+    enum: ['estudiante', 'profesor']
   },
   description: {
     type: String
+  },
+  course: {
+    type: String,
+    required: true,
+    enum: ['primero', 'segundo', 'tercero']
   }
 
 }, {

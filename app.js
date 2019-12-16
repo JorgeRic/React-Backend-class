@@ -54,7 +54,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/auth', auth);
+app.use('/api/auth', auth);
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
